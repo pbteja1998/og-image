@@ -6,9 +6,5 @@ export interface ParsedRequest {
   text: string
   rank: string
   price: string
-  deposits: string
-  supply: string
-  holders: string
-  dailyVolume: string
   dailyChange: string
 }

@@ -5,8 +5,7 @@ import { ParsedRequest } from './types'
 export function parseRequest(req: IncomingMessage) {
   console.log('HTTP ' + req.url)
   const { pathname, query } = parse(req.url || '/', true)
-  const { rank, price, deposits, supply, holders, dailyVolume, dailyChange } =
-    query || {}
+  const { rank, price, dailyChange } = query || {}
 
   const arr = (pathname || '/').slice(1).split('.')
   let extension = ''
@@ -25,10 +24,6 @@ export function parseRequest(req: IncomingMessage) {
     text: decodeURIComponent(text),
     rank: rank as string,
     price: price as string,
-    deposits: deposits as string,
-    supply: supply as string,
-    holders: holders as string,
-    dailyVolume: dailyVolume as string,
     dailyChange: dailyChange as string,
   }
   return parsedRequest

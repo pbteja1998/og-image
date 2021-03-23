@@ -151,10 +151,6 @@ const App = (_: any, state: AppState, setState: SetState) => {
     fileType = 'png',
     rank = '1',
     price = '3.88',
-    deposits = '75.32k',
-    supply = '38.8k',
-    holders = '47',
-    dailyVolume = '0.00',
     dailyChange = '0.00',
     text = 'elonmusk',
     showToast = false,
@@ -167,10 +163,6 @@ const App = (_: any, state: AppState, setState: SetState) => {
   url.pathname = `${encodeURIComponent(text)}.${fileType}`
   url.searchParams.append('rank', rank)
   url.searchParams.append('price', price)
-  url.searchParams.append('deposits', deposits)
-  url.searchParams.append('supply', supply)
-  url.searchParams.append('holders', holders)
-  url.searchParams.append('dailyVolume', dailyVolume)
   url.searchParams.append('dailyChange', dailyChange)
 
   return H(
@@ -216,46 +208,6 @@ const App = (_: any, state: AppState, setState: SetState) => {
             oninput: (val: string) => {
               console.log('oninput ' + val)
               setLoadingState({ price: val, overrideUrl: url })
-            },
-          }),
-        }),
-        H(Field, {
-          label: 'Deposits',
-          input: H(TextInput, {
-            value: deposits,
-            oninput: (val: string) => {
-              console.log('oninput ' + val)
-              setLoadingState({ deposits: val, overrideUrl: url })
-            },
-          }),
-        }),
-        H(Field, {
-          label: 'Supply',
-          input: H(TextInput, {
-            value: supply,
-            oninput: (val: string) => {
-              console.log('oninput ' + val)
-              setLoadingState({ supply: val, overrideUrl: url })
-            },
-          }),
-        }),
-        H(Field, {
-          label: 'Holders',
-          input: H(TextInput, {
-            value: holders,
-            oninput: (val: string) => {
-              console.log('oninput ' + val)
-              setLoadingState({ holders: val, overrideUrl: url })
-            },
-          }),
-        }),
-        H(Field, {
-          label: '24H Volume',
-          input: H(TextInput, {
-            value: dailyVolume,
-            oninput: (val: string) => {
-              console.log('oninput ' + val)
-              setLoadingState({ dailyVolume: val, overrideUrl: url })
             },
           }),
         }),
