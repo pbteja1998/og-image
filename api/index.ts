@@ -10,11 +10,11 @@ export default async function handler(
   req: IncomingMessage,
   res: ServerResponse
 ) {
-  console.log(req)
   try {
+    console.log(req)
     const parsedReq = parseRequest(req)
     console.log(parsedReq)
-    const html = getHtml(parsedReq, req.url as string)
+    const html = getHtml(parsedReq)
     if (isHtmlDebug) {
       res.setHeader('Content-Type', 'text/html')
       res.end(html)
