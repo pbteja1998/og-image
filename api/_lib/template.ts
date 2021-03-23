@@ -529,15 +529,15 @@ export function getHtml(parsedRequest: TokenData) {
             </div>
             <div class="pt-2 pr-0 pb-2 pl-2 text-center">
               <div class="mb-1 text-base font-medium text-gray-100">
-                24H Change
+                7D Change
               </div>
               <div class="text-2xl font-medium leading-8 uppercase">
                 <div class="${
-                  parsedRequest.dayChange &&
-                  parsedRequest.dayChange[0] === '-'
+                  parsedRequest.weeklyChange &&
+                  parsedRequest.weeklyChange[0] === '-'
                     ? 'text-red-500'
                     : 'text-green-500'
-                } uppercase">${parsedRequest.dayChange}%</div>
+                } uppercase">${parsedRequest.weeklyChange}%</div>
               </div>
             </div>
           </div>

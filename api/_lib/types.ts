@@ -11,5 +11,5 @@ export interface TokenData {
   username: string
   rank: string
   price: string
-  dayChange: string
+  weeklyChange: string
 }

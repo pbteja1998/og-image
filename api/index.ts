@@ -12,7 +12,8 @@ export default async function handler(
   res: ServerResponse
 ) {
   try {
-    // console.log(req)
+    const currentTs = Math.floor(Date.now() / 1000)
+    const weekBack = currentTs - 604800
     const parsedReq = parseRequest(req)
     const response = await fetch(
       'https://subgraph.backend.ideamarket.io:8080/subgraphs/name/Ideamarket/Ideamarket',
@@ -42,6 +43,11 @@ export default async function handler(
                     oldPrice
                     price
                   }
+                  pricePoints(where:{timestamp_gt:${weekBack}} orderBy:timestamp) {
+                    timestamp
+                    oldPrice
+                    price
+                  }
                   dayVolume
                   dayChange
                 }
@@ -52,6 +58,18 @@ export default async function handler(
     )
     const result = await response.json()
     const token = result.data.ideaMarkets[0].tokens[0]
+    const weeklyPricePoints = token.pricePoints
+    let weeklyChange = '0'
+    if (weeklyPricePoints.length > 0) {
+      const weeklyCurrentPrice = Number(
+        weeklyPricePoints[weeklyPricePoints.length - 1].price
+      )
+      const weeklyOldPrice = Number(weeklyPricePoints[0].oldPrice)
+      weeklyChange = Number(
+        ((weeklyCurrentPrice - weeklyOldPrice) * 100) / weeklyOldPrice
+      ).toFixed(2)
+    }
+
     console.log(parsedReq)
     console.log(token)
     let html
@@ -59,7 +77,7 @@ export default async function handler(
       html = getHtml({
         rank: token.rank,
         username: token.name,
-        dayChange: Number(token.dayChange).toFixed(2),
+        weeklyChange,
         price: Number(token.latestPricePoint.price).toFixed(2),
         fileType: parsedReq.fileType,
       })
@@ -67,7 +85,7 @@ export default async function handler(
       html = getHtml({
         rank: '0',
         username: parsedReq.text,
-        dayChange: '0',
+        weeklyChange: '0',
         price: '0',
         fileType: parsedReq.fileType,
       })
