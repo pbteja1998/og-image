@@ -149,6 +149,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
   }
   const {
     fileType = 'png',
+    rank = '1',
     price = '0',
     deposits = '0',
     supply = '0',
@@ -164,6 +165,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
 
   const url = new URL(window.location.origin)
   url.pathname = `${encodeURIComponent(text)}.${fileType}`
+  url.searchParams.append('rank', rank)
   url.searchParams.append('price', price)
   url.searchParams.append('deposits', deposits)
   url.searchParams.append('supply', supply)
@@ -191,6 +193,16 @@ const App = (_: any, state: AppState, setState: SetState) => {
           label: 'Username',
           input: H(TextInput, {
             value: text,
+            oninput: (val: string) => {
+              console.log('oninput ' + val)
+              setLoadingState({ text: val, overrideUrl: url })
+            },
+          }),
+        }),
+        H(Field, {
+          label: 'Rank',
+          input: H(TextInput, {
+            value: rank,
             oninput: (val: string) => {
               console.log('oninput ' + val)
               setLoadingState({ text: val, overrideUrl: url })
