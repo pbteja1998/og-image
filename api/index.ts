@@ -73,7 +73,6 @@ export default async function handler(
       })
     }
 
-    // const html = getHtml(parsedReq)
     if (isHtmlDebug) {
       res.setHeader('Content-Type', 'text/html')
       res.end(html)
