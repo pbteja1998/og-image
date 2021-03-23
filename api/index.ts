@@ -1,3 +1,4 @@
+import { ParsedRequest } from './_lib/types'
 import { IncomingMessage, ServerResponse } from 'http'
 import { parseRequest } from './_lib/parser'
 import { getScreenshot } from './_lib/chromium'
@@ -13,7 +14,7 @@ export default async function handler(
   try {
     const parsedReq = parseRequest(req)
     console.log({ parsedReq })
-    const html = getHtml()
+    const html = getHtml(ParsedReq)
     if (isHtmlDebug) {
       res.setHeader('Content-Type', 'text/html')
       res.end(html)
