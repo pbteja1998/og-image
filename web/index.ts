@@ -41,6 +41,27 @@ interface DropdownProps {
   small: boolean
 }
 
+interface TextInputProps {
+  value: string
+  oninput: (val: string) => void
+}
+
+const TextInput = ({ value, oninput }: TextInputProps) => {
+  return H(
+    'div',
+    { className: 'input-outer-wrapper' },
+    H(
+      'div',
+      { className: 'input-inner-wrapper' },
+      H('input', {
+        type: 'text',
+        value,
+        oninput: (e: any) => oninput(e.target.value),
+      })
+    )
+  )
+}
+
 const Dropdown = ({ options, value, onchange, small }: DropdownProps) => {
   const wrapper = small ? 'select-wrapper small' : 'select-wrapper'
   const arrow = small ? 'select-arrow small' : 'select-arrow'
@@ -128,6 +149,12 @@ const App = (_: any, state: AppState, setState: SetState) => {
   }
   const {
     fileType = 'png',
+    price = '0',
+    deposits = '0',
+    supply = '0',
+    holders = '0',
+    dailyVolume = '0',
+    dailyChange = '0',
     text = 'elonmusk',
     showToast = false,
     messageToast = '',
@@ -137,6 +164,12 @@ const App = (_: any, state: AppState, setState: SetState) => {
 
   const url = new URL(window.location.origin)
   url.pathname = `${encodeURIComponent(text)}.${fileType}`
+  url.searchParams.append('price', price)
+  url.searchParams.append('deposits', deposits)
+  url.searchParams.append('supply', supply)
+  url.searchParams.append('holders', holders)
+  url.searchParams.append('dailyVolume', dailyVolume)
+  url.searchParams.append('dailyChange', dailyChange)
 
   return H(
     'div',
@@ -152,6 +185,76 @@ const App = (_: any, state: AppState, setState: SetState) => {
             options: fileTypeOptions,
             value: fileType,
             onchange: (val: FileType) => setLoadingState({ fileType: val }),
+          }),
+        }),
+        H(Field, {
+          label: 'Username',
+          input: H(TextInput, {
+            value: text,
+            oninput: (val: string) => {
+              console.log('oninput ' + val)
+              setLoadingState({ text: val, overrideUrl: url })
+            },
+          }),
+        }),
+        H(Field, {
+          label: 'Price',
+          input: H(TextInput, {
+            value: price,
+            oninput: (val: string) => {
+              console.log('oninput ' + val)
+              setLoadingState({ text: val, overrideUrl: url })
+            },
+          }),
+        }),
+        H(Field, {
+          label: 'Deposits',
+          input: H(TextInput, {
+            value: deposits,
+            oninput: (val: string) => {
+              console.log('oninput ' + val)
+              setLoadingState({ text: val, overrideUrl: url })
+            },
+          }),
+        }),
+        H(Field, {
+          label: 'Supply',
+          input: H(TextInput, {
+            value: supply,
+            oninput: (val: string) => {
+              console.log('oninput ' + val)
+              setLoadingState({ text: val, overrideUrl: url })
+            },
+          }),
+        }),
+        H(Field, {
+          label: 'Holders',
+          input: H(TextInput, {
+            value: holders,
+            oninput: (val: string) => {
+              console.log('oninput ' + val)
+              setLoadingState({ text: val, overrideUrl: url })
+            },
+          }),
+        }),
+        H(Field, {
+          label: '24H Volume',
+          input: H(TextInput, {
+            value: dailyVolume,
+            oninput: (val: string) => {
+              console.log('oninput ' + val)
+              setLoadingState({ text: val, overrideUrl: url })
+            },
+          }),
+        }),
+        H(Field, {
+          label: '24H supply',
+          input: H(TextInput, {
+            value: dailyChange,
+            oninput: (val: string) => {
+              console.log('oninput ' + val)
+              setLoadingState({ text: val, overrideUrl: url })
+            },
           }),
         })
       )
