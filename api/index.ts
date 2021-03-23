@@ -1,4 +1,3 @@
-import { ParsedRequest } from './_lib/types'
 import { IncomingMessage, ServerResponse } from 'http'
 import { parseRequest } from './_lib/parser'
 import { getScreenshot } from './_lib/chromium'
