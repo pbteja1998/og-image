@@ -260,7 +260,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
           }),
         }),
         H(Field, {
-          label: '24H supply',
+          label: '24H Change',
           input: H(TextInput, {
             value: dailyChange,
             oninput: (val: string) => {
