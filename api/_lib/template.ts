@@ -120,7 +120,7 @@ export function getHtml(parsedRequest: ParsedRequest) {
             class="text-2xl font-medium leading-8 uppercase"
           >
             <div class="${
-              parsedRequest.dailyChange?.[0] === '-'
+              parsedRequest.dailyChange && parsedRequest.dailyChange[0] === '-'
                 ? 'text-red-500'
                 : 'text-green-500'
             } uppercase">${parsedRequest.dailyChange}%</div>
