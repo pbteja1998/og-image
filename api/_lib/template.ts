@@ -365,6 +365,9 @@ function getCss() {
   .grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+  .flex-col {
+    flex-direction: column;
+  }
   .items-center {
     align-items: center;
   }
@@ -451,10 +454,10 @@ function getCss() {
     --tw-text-opacity: 1;
     color: rgba(16, 185, 129, var(--tw-text-opacity));
   }
-  .scale-200 {
-    --tw-scale-x: 2;
-    --tw-scale-y: 2;
-  }
+  .scale-400 {
+    --tw-scale-x: 4;
+    --tw-scale-y: 4;
+  }  
   `
 }
 
@@ -473,10 +476,10 @@ export function getHtml(parsedRequest: ParsedRequest) {
   </head>
   <body class="overflow-hidden">
   <div
-    class="p-10 w-screen h-screen flex justify-center items-center transform scale-200"
-    style="background-color: #001135;"
+    class="p-10 w-screen h-screen flex justify-center items-center transform scale-400"
+    style="background-color: #021f5d;"
   >
-      <div class="flex justify-center items-center leading-6 text-white">
+      <div class="flex flex-col justify-center items-center leading-6 text-white">
         <div class="flex flex-none text-white">
           <div class="mr-5 w-20 h-20">
             <img
