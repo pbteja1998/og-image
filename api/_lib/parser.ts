@@ -4,8 +4,7 @@ import { ParsedRequest } from './types'
 
 export function parseRequest(req: IncomingMessage) {
   console.log('HTTP ' + req.url)
-  const { pathname, query } = parse(req.url || '/', true)
-  const { rank, price, dailyChange } = query || {}
+  const { pathname } = parse(req.url || '/', true)
 
   const arr = (pathname || '/').slice(1).split('.')
   let extension = ''
@@ -22,9 +21,6 @@ export function parseRequest(req: IncomingMessage) {
   const parsedRequest: ParsedRequest = {
     fileType: extension === 'jpeg' ? extension : 'png',
     text: decodeURIComponent(text),
-    rank: rank as string,
-    price: price as string,
-    dailyChange: dailyChange as string,
   }
   return parsedRequest
 }

@@ -1,4 +1,4 @@
-import { ParsedRequest } from './types'
+import { TokenData } from './types'
 
 function getCss() {
   return `
@@ -461,7 +461,7 @@ function getCss() {
   `
 }
 
-export function getHtml(parsedRequest: ParsedRequest) {
+export function getHtml(parsedRequest: TokenData) {
   return `
 <!DOCTYPE html>
 <html lang="en">
@@ -484,9 +484,9 @@ export function getHtml(parsedRequest: ParsedRequest) {
           <div class="mr-5 w-20 h-20">
             <img
               class="block max-w-full h-auto align-middle rounded-full"
-              src="https://unavatar.backend.ideamarket.io:8080/twitter/${
-                parsedRequest.text
-              }"
+              src="https://unavatar.backend.ideamarket.io:8080/twitter/${parsedRequest.username.slice(
+                1
+              )}"
               alt=""
             />
           </div>
@@ -498,7 +498,7 @@ export function getHtml(parsedRequest: ParsedRequest) {
                   target="_blank"
                   rel="noreferrer"
                   class="cursor-pointer hover:underline"
-                  >@${parsedRequest.text}</a
+                  >${parsedRequest.username}</a
                 ></span
               ><span class="mr-1 ml-2"
                 ><svg
@@ -533,11 +533,11 @@ export function getHtml(parsedRequest: ParsedRequest) {
               </div>
               <div class="text-2xl font-medium leading-8 uppercase">
                 <div class="${
-                  parsedRequest.dailyChange &&
-                  parsedRequest.dailyChange[0] === '-'
+                  parsedRequest.dayChange &&
+                  parsedRequest.dayChange[0] === '-'
                     ? 'text-red-500'
                     : 'text-green-500'
-                } uppercase">${parsedRequest.dailyChange}%</div>
+                } uppercase">${parsedRequest.dayChange}%</div>
               </div>
             </div>
           </div>

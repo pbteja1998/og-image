@@ -8,11 +8,13 @@
   },
   "dependencies": {
     "chrome-aws-lambda": "2.1.1",
+    "isomorphic-fetch": "3.0.0",
     "marked": "0.8.2",
     "puppeteer-core": "2.1.1",
     "twemoji": "12.1.5"
   },
   "devDependencies": {
+    "@types/isomorphic-fetch": "0.0.35",
     "@types/marked": "0.7.3",
     "@types/puppeteer": "2.0.1",
     "@types/puppeteer-core": "2.0.0",

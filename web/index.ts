@@ -149,9 +149,6 @@ const App = (_: any, state: AppState, setState: SetState) => {
   }
   const {
     fileType = 'png',
-    rank = '1',
-    price = '3.88',
-    dailyChange = '0.00',
     text = 'elonmusk',
     showToast = false,
     messageToast = '',
@@ -161,9 +158,6 @@ const App = (_: any, state: AppState, setState: SetState) => {
 
   const url = new URL(window.location.origin)
   url.pathname = `${encodeURIComponent(text)}.${fileType}`
-  url.searchParams.append('rank', rank)
-  url.searchParams.append('price', price)
-  url.searchParams.append('dailyChange', dailyChange)
 
   return H(
     'div',
@@ -188,36 +182,6 @@ const App = (_: any, state: AppState, setState: SetState) => {
             oninput: (val: string) => {
               console.log('oninput ' + val)
               setLoadingState({ text: val, overrideUrl: url })
-            },
-          }),
-        }),
-        H(Field, {
-          label: 'Rank',
-          input: H(TextInput, {
-            value: rank,
-            oninput: (val: string) => {
-              console.log('oninput ' + val)
-              setLoadingState({ rank: val, overrideUrl: url })
-            },
-          }),
-        }),
-        H(Field, {
-          label: 'Price',
-          input: H(TextInput, {
-            value: price,
-            oninput: (val: string) => {
-              console.log('oninput ' + val)
-              setLoadingState({ price: val, overrideUrl: url })
-            },
-          }),
-        }),
-        H(Field, {
-          label: '24H Change',
-          input: H(TextInput, {
-            value: dailyChange,
-            oninput: (val: string) => {
-              console.log('oninput ' + val)
-              setLoadingState({ dailyChange: val, overrideUrl: url })
             },
           }),
         })
