@@ -79,14 +79,14 @@ const Dropdown = ({ options, value, onchange, small }: DropdownProps) => {
 //   )
 // }
 
-interface ButtonProps {
-  label: string
-  onclick: () => void
-}
+// interface ButtonProps {
+//   label: string
+//   onclick: () => void
+// }
 
-const Button = ({ label, onclick }: ButtonProps) => {
-  return H('button', { onclick }, label)
-}
+// const Button = ({ label, onclick }: ButtonProps) => {
+//   return H('button', { onclick }, label)
+// }
 
 interface FieldProps {
   label: string
@@ -291,19 +291,6 @@ const App = (_: any, state: AppState, setState: SetState) => {
             options: fileTypeOptions,
             value: fileType,
             onchange: (val: FileType) => setLoadingState({ fileType: val }),
-          }),
-        }),
-        H(Field, {
-          label: `Image ${images.length + 1}`,
-          input: H(Button, {
-            label: `Add Image ${images.length + 1}`,
-            onclick: () => {
-              const nextImage =
-                images.length === 1
-                  ? 'https://cdn.jsdelivr.net/gh/remojansen/logo.ts@master/ts.svg'
-                  : ''
-              setLoadingState({ images: [...images, nextImage] })
-            },
           }),
         })
       )
