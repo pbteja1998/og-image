@@ -5,7 +5,7 @@ import { ParsedRequest } from './types'
 export function parseRequest(req: IncomingMessage) {
   console.log('HTTP ' + req.url)
   const { pathname, query } = parse(req.url || '/', true)
-  const { price, deposits, supply, holders, dailyVolume, dailyChange } =
+  const { rank, price, deposits, supply, holders, dailyVolume, dailyChange } =
     query || {}
 
   const arr = (pathname || '/').slice(1).split('.')
@@ -23,6 +23,7 @@ export function parseRequest(req: IncomingMessage) {
   const parsedRequest: ParsedRequest = {
     fileType: extension === 'jpeg' ? extension : 'png',
     text: decodeURIComponent(text),
+    rank: rank as string,
     price: price as string,
     deposits: deposits as string,
     supply: supply as string,

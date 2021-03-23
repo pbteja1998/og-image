@@ -62,7 +62,7 @@ export function getHtml(parsedRequest: ParsedRequest) {
             </svg>
           </span>
         </div>
-        <div class="mt-1 text-sm leading-5">Rank 1</div>
+        <div class="mt-1 text-sm leading-5">Rank ${parsedRequest.rank}</div>
       </div>
     </div>
     <div class="text-white">
