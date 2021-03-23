@@ -13,7 +13,7 @@ export default async function handler(
   try {
     const parsedReq = parseRequest(req)
     console.log({ parsedReq })
-    const html = getHtml(ParsedReq)
+    const html = getHtml(parsedReq)
     if (isHtmlDebug) {
       res.setHeader('Content-Type', 'text/html')
       res.end(html)
