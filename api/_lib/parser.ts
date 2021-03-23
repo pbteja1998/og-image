@@ -23,12 +23,12 @@ export function parseRequest(req: IncomingMessage) {
   const parsedRequest: ParsedRequest = {
     fileType: extension === 'jpeg' ? extension : 'png',
     text: decodeURIComponent(text),
-    price,
-    deposits,
-    supply,
-    holders,
-    dailyVolume,
-    dailyChange,
+    price: price as string,
+    deposits: deposits as string,
+    supply: supply as string,
+    holders: holders as string,
+    dailyVolume: dailyVolume as string,
+    dailyChange: dailyChange as string,
   }
   return parsedRequest
 }
