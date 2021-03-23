@@ -30,7 +30,9 @@ export function getHtml(parsedRequest: ParsedRequest) {
       <div class="mr-5 w-20 h-20">
         <img
           class="block max-w-full h-auto align-middle rounded-full"
-          src="https://unavatar.backend.ideamarket.io:8080/twitter/elonmusk"
+          src="https://unavatar.backend.ideamarket.io:8080/twitter/${
+            parsedRequest.text
+          }"
           alt=""
         />
       </div>
@@ -38,11 +40,11 @@ export function getHtml(parsedRequest: ParsedRequest) {
         <div class="">
           <span class="align-middle"
             ><a
-              href="https://twitter.com/elonmusk"
+              href="https://twitter.com/${parsedRequest.text}"
               target="_blank"
               rel="noreferrer"
               class="cursor-pointer hover:underline"
-              >@elonmusk</a
+              >@${parsedRequest.text}</a
             ></span
           ><span class="mr-1 ml-2"
             ><svg
