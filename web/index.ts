@@ -58,36 +58,6 @@ const Dropdown = ({ options, value, onchange, small }: DropdownProps) => {
   )
 }
 
-// interface TextInputProps {
-//   value: string
-//   oninput: (val: string) => void
-// }
-
-// const TextInput = ({ value, oninput }: TextInputProps) => {
-//   return H(
-//     'div',
-//     { className: 'input-outer-wrapper' },
-//     H(
-//       'div',
-//       { className: 'input-inner-wrapper' },
-//       H('input', {
-//         type: 'text',
-//         value,
-//         oninput: (e: any) => oninput(e.target.value),
-//       })
-//     )
-//   )
-// }
-
-// interface ButtonProps {
-//   label: string
-//   onclick: () => void
-// }
-
-// const Button = ({ label, onclick }: ButtonProps) => {
-//   return H('button', { onclick }, label)
-// }
-
 interface FieldProps {
   label: string
   input: any
@@ -127,85 +97,10 @@ const Toast = ({ show, message }: ToastProps) => {
   )
 }
 
-// const themeOptions: DropdownOption[] = [
-//   { text: 'Light', value: 'light' },
-//   { text: 'Dark', value: 'dark' },
-// ]
-
 const fileTypeOptions: DropdownOption[] = [
   { text: 'PNG', value: 'png' },
   { text: 'JPEG', value: 'jpeg' },
 ]
-
-// const fontSizeOptions: DropdownOption[] = Array.from({ length: 10 })
-//   .map((_, i) => i * 25)
-//   .filter((n) => n > 0)
-//   .map((n) => ({ text: n + 'px', value: n + 'px' }))
-
-// const markdownOptions: DropdownOption[] = [
-//   { text: 'Plain Text', value: '0' },
-//   { text: 'Markdown', value: '1' },
-// ]
-
-// const imageLightOptions: DropdownOption[] = [
-//   { text: 'Coderplex', value: 'https://beta.coderplex.in/logo.svg' },
-//   {
-//     text: 'Vercel',
-//     value:
-//       'https://assets.vercel.com/image/upload/front/assets/design/vercel-triangle-black.svg',
-//   },
-//   {
-//     text: 'Next.js',
-//     value:
-//       'https://assets.vercel.com/image/upload/front/assets/design/nextjs-black-logo.svg',
-//   },
-//   {
-//     text: 'Hyper',
-//     value:
-//       'https://assets.vercel.com/image/upload/front/assets/design/hyper-color-logo.svg',
-//   },
-// ]
-
-// const imageDarkOptions: DropdownOption[] = [
-//   { text: 'Coderplex', value: 'https://beta.coderplex.in/logo.svg' },
-//   {
-//     text: 'Vercel',
-//     value:
-//       'https://assets.vercel.com/image/upload/front/assets/design/vercel-triangle-white.svg',
-//   },
-//   {
-//     text: 'Next.js',
-//     value:
-//       'https://assets.vercel.com/image/upload/front/assets/design/nextjs-white-logo.svg',
-//   },
-//   {
-//     text: 'Hyper',
-//     value:
-//       'https://assets.vercel.com/image/upload/front/assets/design/hyper-bw-logo.svg',
-//   },
-// ]
-
-// const widthOptions = [
-//   { text: 'width', value: 'auto' },
-//   { text: '50', value: '50' },
-//   { text: '100', value: '100' },
-//   { text: '150', value: '150' },
-//   { text: '200', value: '200' },
-//   { text: '250', value: '250' },
-//   { text: '300', value: '300' },
-//   { text: '350', value: '350' },
-// ]
-
-// const heightOptions = [
-//   { text: 'height', value: 'auto' },
-//   { text: '50', value: '50' },
-//   { text: '100', value: '100' },
-//   { text: '150', value: '150' },
-//   { text: '200', value: '200' },
-//   { text: '250', value: '250' },
-//   { text: '300', value: '300' },
-//   { text: '350', value: '350' },
-// ]
 
 interface AppState extends ParsedRequest {
   loading: boolean
@@ -239,7 +134,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
     loading = true,
     overrideUrl = null,
   } = state
-  //   const imageOptions = theme === 'light' ? imageLightOptions : imageDarkOptions
+
   const url = new URL(window.location.origin)
   url.pathname = `${encodeURIComponent(text)}.${fileType}`
 
