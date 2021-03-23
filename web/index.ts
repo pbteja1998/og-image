@@ -205,7 +205,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
             value: rank,
             oninput: (val: string) => {
               console.log('oninput ' + val)
-              setLoadingState({ text: val, overrideUrl: url })
+              setLoadingState({ rank: val, overrideUrl: url })
             },
           }),
         }),
@@ -215,7 +215,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
             value: price,
             oninput: (val: string) => {
               console.log('oninput ' + val)
-              setLoadingState({ text: val, overrideUrl: url })
+              setLoadingState({ price: val, overrideUrl: url })
             },
           }),
         }),
@@ -225,7 +225,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
             value: deposits,
             oninput: (val: string) => {
               console.log('oninput ' + val)
-              setLoadingState({ text: val, overrideUrl: url })
+              setLoadingState({ deposits: val, overrideUrl: url })
             },
           }),
         }),
@@ -235,7 +235,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
             value: supply,
             oninput: (val: string) => {
               console.log('oninput ' + val)
-              setLoadingState({ text: val, overrideUrl: url })
+              setLoadingState({ supply: val, overrideUrl: url })
             },
           }),
         }),
@@ -245,7 +245,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
             value: holders,
             oninput: (val: string) => {
               console.log('oninput ' + val)
-              setLoadingState({ text: val, overrideUrl: url })
+              setLoadingState({ holders: val, overrideUrl: url })
             },
           }),
         }),
@@ -255,7 +255,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
             value: dailyVolume,
             oninput: (val: string) => {
               console.log('oninput ' + val)
-              setLoadingState({ text: val, overrideUrl: url })
+              setLoadingState({ dailyVolume: val, overrideUrl: url })
             },
           }),
         }),
@@ -265,7 +265,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
             value: dailyChange,
             oninput: (val: string) => {
               console.log('oninput ' + val)
-              setLoadingState({ text: val, overrideUrl: url })
+              setLoadingState({ dailyChange: val, overrideUrl: url })
             },
           }),
         })
