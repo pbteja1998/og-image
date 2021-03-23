@@ -58,22 +58,22 @@ export default async function handler(
     )
     const result = await response.json()
     const token = result.data.ideaMarkets[0].tokens[0]
-    const weeklyPricePoints = token.pricePoints
-    let weeklyChange = '0'
-    if (weeklyPricePoints.length > 0) {
-      const weeklyCurrentPrice = Number(
-        weeklyPricePoints[weeklyPricePoints.length - 1].price
-      )
-      const weeklyOldPrice = Number(weeklyPricePoints[0].oldPrice)
-      weeklyChange = Number(
-        ((weeklyCurrentPrice - weeklyOldPrice) * 100) / weeklyOldPrice
-      ).toFixed(2)
-    }
-
-    console.log(parsedReq)
-    console.log(token)
     let html
     if (token) {
+      const weeklyPricePoints = token.pricePoints
+      let weeklyChange = '0'
+      if (weeklyPricePoints.length > 0) {
+        const weeklyCurrentPrice = Number(
+          weeklyPricePoints[weeklyPricePoints.length - 1].price
+        )
+        const weeklyOldPrice = Number(weeklyPricePoints[0].oldPrice)
+        weeklyChange = Number(
+          ((weeklyCurrentPrice - weeklyOldPrice) * 100) / weeklyOldPrice
+        ).toFixed(2)
+      }
+
+      console.log(parsedReq)
+      console.log(token)
       html = getHtml({
         rank: token.rank,
         username: token.name,
