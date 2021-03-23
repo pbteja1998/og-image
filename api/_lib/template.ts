@@ -6,7 +6,7 @@ function getCss() {
   `
 }
 
-export function getHtml(parsedRequest: ParsedRequest) {
+export function getHtml(parsedRequest: ParsedRequest, url: string) {
   return `
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +18,7 @@ export function getHtml(parsedRequest: ParsedRequest) {
     <style>
         ${getCss()}
     </style>
+    <meta property="og:image" content="${url}"/>
   </head>
   <body>
   <div
