@@ -461,7 +461,28 @@ function getCss() {
   `
 }
 
-export function getHtml(parsedRequest: TokenData) {
+export function getHtml(tokenData: TokenData) {
+  const twitterLogo = `
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    class="inline-block align-middle"
+  >
+    <path
+      d="M17.857 20C19.04 20 20 19.04 20 17.857V2.143C20 .96 19.04 0 17.857 0H2.143C.96 0 0 .96 0 2.143v15.714C0 19.04.96 20 2.143 20h15.714zM7.353 15.8a8.297 8.297 0 01-4.496-1.313c.237.026.464.035.705.035 1.371 0 2.63-.464 3.634-1.25a2.93 2.93 0 01-2.736-2.03c.45.066.857.066 1.321-.055a2.927 2.927 0 01-2.343-2.874v-.036a2.92 2.92 0 001.32.37C4.04 8.17 3.456 7.08 3.456 6.215V6.21c0-.545.143-1.045.398-1.478a8.305 8.305 0 006.034 3.063c-.415-1.987 1.072-3.599 2.858-3.599.843 0 1.602.353 2.138.925a5.736 5.736 0 001.857-.706 2.923 2.923 0 01-1.286 1.612 5.832 5.832 0 001.688-.456 6.142 6.142 0 01-1.469 1.518c.009.125.009.255.009.38 0 3.87-2.946 8.33-8.33 8.33z"
+      fill="#FFF"
+      fill-rule="nonzero"
+      class=""
+    ></path>
+  </svg>
+  `
+  const substackLogo = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="inline-block align-middle">
+    <path d="M17.857 20C19.04 20 20 19.04 20 17.857V2.143C20 .96 19.04 0 17.857 0H2.143C.96 0 0 .96 0 2.143v15.714C0 19.04.96 20 2.143 20h15.714zM7.353 15.8a8.297 8.297 0 01-4.496-1.313c.237.026.464.035.705.035 1.371 0 2.63-.464 3.634-1.25a2.93 2.93 0 01-2.736-2.03c.45.066.857.066 1.321-.055a2.927 2.927 0 01-2.343-2.874v-.036a2.92 2.92 0 001.32.37C4.04 8.17 3.456 7.08 3.456 6.215V6.21c0-.545.143-1.045.398-1.478a8.305 8.305 0 006.034 3.063c-.415-1.987 1.072-3.599 2.858-3.599.843 0 1.602.353 2.138.925a5.736 5.736 0 001.857-.706 2.923 2.923 0 01-1.286 1.612 5.832 5.832 0 001.688-.456 6.142 6.142 0 01-1.469 1.518c.009.125.009.255.009.38 0 3.87-2.946 8.33-8.33 8.33z" fill="#fff"></path><path fill="#fff" d="M2.352 1.949h15.297v15.106H2.352z"></path><path d="M15.278 6.697H4.721v1.421h10.557zM4.721 9.405v6.605L10 13.06l5.279 2.95V9.405zM15.278 3.99H4.721v1.42h10.557z">
+    </path>
+  </svg>
+  `
   return `
 <!DOCTYPE html>
 <html lang="en">
@@ -484,39 +505,35 @@ export function getHtml(parsedRequest: TokenData) {
           <div class="mr-5 w-20 h-20">
             <img
               class="block max-w-full h-auto align-middle rounded-full"
-              src="https://unavatar.backend.ideamarket.io:8080/twitter/${parsedRequest.username.slice(
-                1
-              )}"
+              src="https://unavatar.backend.ideamarket.io:8080/${
+                tokenData.market
+              }/${tokenData.username}"
               alt=""
             />
           </div>
           <div class="mt-1 text-2xl font-semibold leading-8 text-gray-400">
             <div class="">
-              <span class="align-middle"
-                ><a
+              <span class="align-middle">
+              <a
                   href="https://twitter.com/elonmusk"
                   target="_blank"
                   rel="noreferrer"
                   class="cursor-pointer hover:underline"
-                  >${parsedRequest.username}</a
-                ></span
-              ><span class="mr-1 ml-2"
-                ><svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  class="inline-block align-middle"
-                >
-                  <path
-                    d="M17.857 20C19.04 20 20 19.04 20 17.857V2.143C20 .96 19.04 0 17.857 0H2.143C.96 0 0 .96 0 2.143v15.714C0 19.04.96 20 2.143 20h15.714zM7.353 15.8a8.297 8.297 0 01-4.496-1.313c.237.026.464.035.705.035 1.371 0 2.63-.464 3.634-1.25a2.93 2.93 0 01-2.736-2.03c.45.066.857.066 1.321-.055a2.927 2.927 0 01-2.343-2.874v-.036a2.92 2.92 0 001.32.37C4.04 8.17 3.456 7.08 3.456 6.215V6.21c0-.545.143-1.045.398-1.478a8.305 8.305 0 006.034 3.063c-.415-1.987 1.072-3.599 2.858-3.599.843 0 1.602.353 2.138.925a5.736 5.736 0 001.857-.706 2.923 2.923 0 01-1.286 1.612 5.832 5.832 0 001.688-.456 6.142 6.142 0 01-1.469 1.518c.009.125.009.255.009.38 0 3.87-2.946 8.33-8.33 8.33z"
-                    fill="#FFF"
-                    fill-rule="nonzero"
-                    class=""
-                  ></path>
-                </svg>
+              >
+              ${tokenData.username}
+              </a>
+              </span>
+              <span class="mr-1 ml-2">
+                ${
+                  tokenData.market === 'twitter'
+                    ? twitterLogo
+                    : tokenData.market === 'substack'
+                    ? substackLogo
+                    : null
+                }
               </span>
             </div>
-            <div class="mt-1 text-sm leading-5">Rank ${parsedRequest.rank}</div>
+            <div class="mt-1 text-sm leading-5">Rank ${tokenData.rank}</div>
           </div>
         </div>
         <div class="text-white">
@@ -524,7 +541,7 @@ export function getHtml(parsedRequest: TokenData) {
             <div class="px-2 pt-2 pb-2 text-center">
               <div class="mb-1 text-base font-medium text-gray-100">Price</div>
               <div class="text-2xl font-medium leading-8 uppercase">$${
-                parsedRequest.price
+                tokenData.price
               }</div>
             </div>
             <div class="pt-2 pr-0 pb-2 pl-2 text-center">
@@ -533,11 +550,10 @@ export function getHtml(parsedRequest: TokenData) {
               </div>
               <div class="text-2xl font-medium leading-8 uppercase">
                 <div class="${
-                  parsedRequest.weeklyChange &&
-                  parsedRequest.weeklyChange[0] === '-'
+                  tokenData.weeklyChange && tokenData.weeklyChange[0] === '-'
                     ? 'text-red-500'
                     : 'text-green-500'
-                } uppercase">${parsedRequest.weeklyChange}%</div>
+                } uppercase">${tokenData.weeklyChange}%</div>
               </div>
             </div>
           </div>

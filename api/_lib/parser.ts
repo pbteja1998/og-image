@@ -1,6 +1,6 @@
 import { IncomingMessage } from 'http'
 import { parse } from 'url'
-import { ParsedRequest } from './types'
+import { MarketType, ParsedRequest } from './types'
 
 export function parseRequest(req: IncomingMessage) {
   console.log('HTTP ' + req.url)
@@ -9,18 +9,20 @@ export function parseRequest(req: IncomingMessage) {
   const arr = (pathname || '/').slice(1).split('.')
   let extension = ''
   let text = ''
+  let market = ''
   if (arr.length === 0) {
     text = ''
   } else if (arr.length === 1) {
-    text = arr[0]
+    ;[market, text] = arr[0].split('/')
   } else {
     extension = arr.pop() as string
-    text = arr.join('.')
+    ;[market, text] = arr.join('.').split('/')
   }
 
   const parsedRequest: ParsedRequest = {
     fileType: extension === 'jpeg' ? extension : 'png',
     text: decodeURIComponent(text),
+    market: market as MarketType,
   }
   return parsedRequest
 }

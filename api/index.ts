@@ -14,7 +14,14 @@ export default async function handler(
   try {
     const currentTs = Math.floor(Date.now() / 1000)
     const weekBack = currentTs - 604800
-    const parsedReq = parseRequest(req)
+    const parsedRequest = parseRequest(req)
+    const username =
+      parsedRequest.market === 'twitter'
+        ? `@${parsedRequest.text}`
+        : parsedRequest.text
+    const market =
+      parsedRequest.market.charAt(0).toUpperCase() +
+      parsedRequest.market.slice(1)
     const response = await fetch(
       'https://subgraph.backend.ideamarket.io:8080/subgraphs/name/Ideamarket/Ideamarket',
       {
@@ -23,8 +30,8 @@ export default async function handler(
         body: JSON.stringify({
           query: `
             query {
-              ideaMarkets(where: { name: "Twitter" }) {
-                tokens(where: { name: "@${parsedReq.text}" }) {
+              ideaMarkets(where: { name: "${market}" }) {
+                tokens(where: { name: "${username}" }) {
                   id
                   tokenID
                   name
@@ -72,22 +79,22 @@ export default async function handler(
         ).toFixed(2)
       }
 
-      console.log(parsedReq)
-      console.log(token)
       html = getHtml({
         rank: token.rank,
-        username: token.name,
+        username: parsedRequest.text,
         weeklyChange,
         price: Number(token.latestPricePoint.price).toFixed(2),
-        fileType: parsedReq.fileType,
+        fileType: parsedRequest.fileType,
+        market: parsedRequest.market,
       })
     } else {
       html = getHtml({
         rank: '0',
-        username: parsedReq.text,
+        username: parsedRequest.text,
         weeklyChange: '0',
         price: '0',
-        fileType: parsedReq.fileType,
+        fileType: parsedRequest.fileType,
+        market: parsedRequest.market,
       })
     }
 
@@ -96,7 +103,7 @@ export default async function handler(
       res.end(html)
       return
     }
-    const { fileType } = parsedReq
+    const { fileType } = parsedRequest
     const file = await getScreenshot(html, fileType, isDev)
     res.statusCode = 200
     res.setHeader('Content-Type', `image/${fileType}`)

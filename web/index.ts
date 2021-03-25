@@ -1,4 +1,4 @@
-import { ParsedRequest, FileType } from '../api/_lib/types'
+import { ParsedRequest, FileType, MarketType } from '../api/_lib/types'
 const { H, R, copee } = window as any
 let timeout = -1
 
@@ -123,6 +123,11 @@ const fileTypeOptions: DropdownOption[] = [
   { text: 'JPEG', value: 'jpeg' },
 ]
 
+const marketOptions: DropdownOption[] = [
+  { text: 'Twitter', value: 'twitter' },
+  { text: 'Substack', value: 'substack' },
+]
+
 interface AppState extends ParsedRequest {
   loading: boolean
   showToast: boolean
@@ -150,6 +155,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
   const {
     fileType = 'png',
     text = 'elonmusk',
+    market = 'twitter',
     showToast = false,
     messageToast = '',
     loading = true,
@@ -157,7 +163,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
   } = state
 
   const url = new URL(window.location.origin)
-  url.pathname = `${encodeURIComponent(text)}.${fileType}`
+  url.pathname = `${market}/${encodeURIComponent(text)}.${fileType}`
 
   return H(
     'div',
@@ -173,6 +179,14 @@ const App = (_: any, state: AppState, setState: SetState) => {
             options: fileTypeOptions,
             value: fileType,
             onchange: (val: FileType) => setLoadingState({ fileType: val }),
+          }),
+        }),
+        H(Field, {
+          label: 'Market',
+          input: H(Dropdown, {
+            options: marketOptions,
+            value: market,
+            onchange: (val: MarketType) => setLoadingState({ market: val }),
           }),
         }),
         H(Field, {
