@@ -23,7 +23,7 @@ export default async function handler(
       parsedRequest.market.charAt(0).toUpperCase() +
       parsedRequest.market.slice(1)
     const response = await fetch(
-      'https://subgraph.backend.ideamarket.io:443/subgraphs/name/Ideamarket/Ideamarket',
+      'https://subgraph.backend.ideamarket.io/subgraphs/name/Ideamarket/Ideamarket',
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
