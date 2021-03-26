@@ -505,9 +505,9 @@ export function getHtml(tokenData: TokenData) {
           <div class="mr-5 w-20 h-20">
             <img
               class="block max-w-full h-auto align-middle rounded-full"
-              src="https://unavatar.backend.ideamarket.io:8080/${
-                tokenData.market
-              }/${tokenData.username}"
+              src="https://unavatar.backend.ideamarket.io/${tokenData.market}/${
+    tokenData.username
+  }"
               alt=""
             />
           </div>
